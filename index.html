@@ -12,21 +12,22 @@
 </style>
 <body>
     <div class="container">
-        <div class="col-md-5 mx-auto">
-            <div class="title mt-5 mb-3 text-center">
-                <h1 class="fw-bold">
-                    TODO LIST<br>
-                </h1>
-                <span class="fs-6">Get things done, one item at a time.</span>
-            </div>
-            
-            
-            <div class="card shadow">
-                <nav class="nav nav-tabs flex-nowrap text-center">
-                    <a class="nav-link flex-fill text-nowrap active" aria-current="page" href="#">全部</a>
-                    <a class="nav-link flex-fill text-nowrap" href="#">待完成</a>
-                    <a class="nav-link flex-fill text-nowrap" href="#">已完成</a>
-                </nav>
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <div class="title mt-5 mb-3 text-center">
+                    <h1 class="fw-bold">
+                        TODO LIST<br>
+                    </h1>
+                    <span class="fs-6">Get things done, one item at a time.</span>
+                </div>
+                
+                <div class="card shadow">
+                    <nav class="nav nav-tabs flex-nowrap text-center">
+                        <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#">全部</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">待完成</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">已完成</a>
+                    </nav>
+                    <!-- 待辦列表 -->
                     <ul class="list-group">
                         <li class="list-group-item pt-3 px-5 mb-1 d-flex justify-content-between">
                             <span class="w-85">咖啡</span>
@@ -56,33 +57,35 @@
                             </div>
                         </li>
                     </ul>
-
-                    <!-- 排序項目 -->
-                    <div class="form-check form-switch ms-auto mt-1 mb-4 me-4 align-items-center">
-                        <label class="form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">已完成項目</label>
-                        <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                    </div>
-
-                    <div class="row">
-                        <div class="col-10 mx-auto">
-                            <div class="input-group text-center my-3">
-                                    <input type="text" class="form-control" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                                        加入
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
+    
+                        <!-- 排序項目 -->
+                        <div class="form-check form-switch ms-auto mt-1 mb-4 me-4 align-items-center">
+                            <label class="form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">已完成項目</label>
+                            <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-10 mx-auto">
+                                <div class="input-group text-center my-3">
+                                        <input type="text" class="form-control" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                            加入
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                
-                <div class="row my-3">
-                    <div class="col-6">
-                        <span class="ms-4">待完成項目5個</span>
-                    </div>
-                    <div class="col-6 text-end">
-                        <a href="#" class="clear me-4">清除已完成項目</a>
+                    
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <span class="ms-4">待完成項目5個</span>
+                        </div>
+                        <div class="col-6 text-end">
+                            <a href="#" class="clear me-4">清除已完成項目</a>
+                        </div>
                     </div>
                 </div>
+    
             </div>
 
         </div>
