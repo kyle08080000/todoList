@@ -1,0 +1,46 @@
+a{
+    color: black;
+}
+.list-group-item{
+    background-color: $gray-100;
+}
+.list-group-item > span {
+
+    padding-bottom: 10px;
+}
+
+
+
+.nav{
+    border-bottom: 1px solid $gray-300;
+}
+.active{
+    // border-bottom: 1px solid black !important;
+    z-index: 2;
+}
+.nav-link{
+    color: $secondary;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.clear{
+    color: $gray-500;
+    text-decoration: none;
+}
+
+.form-check.form-switch {
+    display: flex;
+}
+/* 設定 input 的順序為 2，讓它出現在前面 */
+.form-check.form-switch .form-check-input {
+    order: 2;
+}
+input:focus {
+    outline: none;
+    border-color: transparent; /* 或設定為其他你想要的顏色 */
+    box-shadow: none; /* Bootstrap等框架可能會為聚焦的輸入框添加陰影 */
+}
+
+
+
