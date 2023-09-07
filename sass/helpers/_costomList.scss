@@ -4,6 +4,9 @@ a{
 
 .list-group-item{
     background-color: $gray-100;
+    .trash:hover{
+        color: red;
+    }
 }
 
 // @keyframes fadeOutText {
@@ -90,10 +93,6 @@ a{
     }
 }
 
-.active{
-    // border-bottom: 1px solid black !important;
-    z-index: 2;
-}
 
 .clear{
     color: $gray-500;

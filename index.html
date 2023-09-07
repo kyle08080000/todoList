@@ -24,40 +24,15 @@
                 <div class="card shadow">
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
                         <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#">全部</a>
-                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">待完成</a>
-                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">已完成</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">work</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#">全聯補貨</a>
+                        <a class="nav-link px-3 text-nowrap" href="#">
+                            <i class="bi bi-plus-circle"></i>
+                        </a>
                     </nav>
                     <!-- 待辦列表 -->
                     <ul class="list-group">
-                        <li class="list-group-item py-3 px-4 mb-1 d-flex ">
-                            <div class="overflow-auto me-auto">
-                                <span class="task-name text-nowrap text-break">告訴 se他很告teven他很告teven他很告teven 他很</span>
-                            </div>
-                            <div class="actions text-nowrap ms-3">
-                                <input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
-                                <a href="#">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="list-group-item py-3 px-4 mb-1 d-flex justify-content-between">
-                            <span>洗髮精</span>
-                            <div class="actions text-nowrap">
-                                <input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
-                                <a href="#">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="list-group-item py-3 px-4 mb-1 d-flex justify-content-between">
-                            <span>告訴 steven 他很臭</span>
-                            <div class="actions text-nowrap">
-                                <input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
-                                <a href="#">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </li>
+
                     </ul>
     
                         <!-- 排序項目 -->
@@ -69,8 +44,8 @@
                         <div class="row">
                             <div class="col-10 mx-auto">
                                 <div class="input-group text-center my-3">
-                                        <input type="text" class="form-control" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                        <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <button class="btn btn-outline-secondary addButton" type="submit" id="button-addon2">
                                             加入
                                             <i class="bi bi-plus-lg"></i>
                                         </button>
