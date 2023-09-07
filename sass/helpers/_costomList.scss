@@ -1,27 +1,98 @@
 a{
     color: black;
 }
+
 .list-group-item{
     background-color: $gray-100;
 }
-.list-group-item > span {
 
-    padding-bottom: 10px;
+// @keyframes fadeOutText {
+//     from {
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0.5;
+//     }
+// }
+
+// .striked {
+//     text-decoration: line-through;
+//     animation: fadeOutText 0.3s forwards;
+//     opacity: 0.5;
+// }
+
+@keyframes strikeThrough {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
 }
+
+@keyframes unstrike {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+.task-name {
+    display: inline-block;
+    position: relative;
+    color: #000;
+    transition: color 0.3s;
+}
+
+.task-name.striked {
+    color: rgba(0, 0, 0, 0.5); 
+}
+
+.task-name.striked::before, .task-name.unstriked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+.task-name.striked::before {
+    animation: strikeThrough 0.3s forwards;
+}
+
+.task-name.unstriked::before {
+    animation: unstrike 0.3s forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 .nav{
     border-bottom: 1px solid $gray-300;
+    &-link{
+        color: $secondary;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }
+
 .active{
     // border-bottom: 1px solid black !important;
     z-index: 2;
-}
-.nav-link{
-    color: $secondary;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .clear{
@@ -36,10 +107,11 @@ a{
 .form-check.form-switch .form-check-input {
     order: 2;
 }
+
 input:focus {
     outline: none;
-    border-color: transparent; /* 或設定為其他你想要的顏色 */
-    box-shadow: none; /* Bootstrap等框架可能會為聚焦的輸入框添加陰影 */
+    border-color: transparent;
+    box-shadow: none;
 }
 
 
