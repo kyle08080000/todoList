@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { content: "告訴 steven 不要再暈船了", completed: false, originalIndex: 2 },
     ];
 
+    let isAnimating = false;
+
     // 渲染数据到 HTML
     function renderData() {
         listGroup.innerHTML = '';
@@ -60,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 更改完成状态
     listGroup.addEventListener('change', function(e) {
+        if (isAnimating) return;
         const target = e.target;
         if (target.matches('.trash, .trash *')) {
             e.preventDefault();
@@ -92,24 +95,63 @@ document.addEventListener('DOMContentLoaded', function() {
             const listItem = target.closest('li');
             const originalIndex = parseInt(listItem.getAttribute('data-original-index'), 10);
             listItem.classList.add('animate__animated', 'animate__backOutRight');
+            isAnimating = true;
+            toggleButtons(true);
             listItem.addEventListener('animationend', () => {
+                isAnimating = false;
+                toggleButtons(false);
                 data = data.filter(item => item.originalIndex !== originalIndex);
                 renderData();
             });
         }
     });
 
+
+
+
     // 排序已完成項目
     sortCheckbox.addEventListener('change', function(e) {
         renderData();
     });
 
+    
     // 清除所有已完成的任務
     clearButton.addEventListener('click', function(e) {
         e.preventDefault();
-        data = data.filter(item => !item.completed);
-        renderData();
+        const completedItems = Array.from(listGroup.children).filter(listItem =>
+            data[parseInt(listItem.getAttribute('data-original-index'), 10)].completed
+        );
+        if (completedItems.length === 0) return;
+        completedItems.forEach(listItem => {
+            listItem.classList.add('animate__animated', 'animate__hinge');
+        });
+        isAnimating = true;
+        toggleButtons(true);
+        completedItems[completedItems.length - 1].addEventListener('animationend', () => {
+            isAnimating = false;
+            toggleButtons(false);
+            data = data.filter(item => !item.completed);
+            // Update originalIndex of the remaining items
+            data.forEach((item, index) => {
+                item.originalIndex = index;
+            });
+            renderData();
+        });
     });
+
+    // 檢查畫面是否有動畫正在執行
+    function toggleButtons(disabled) {
+        addButton.disabled = disabled;
+        sortCheckbox.disabled = disabled;
+        clearButton.disabled = disabled;
+        document.querySelectorAll('.form-check-input').forEach(function(checkbox) {
+            checkbox.disabled = disabled;
+        });
+        document.querySelectorAll('.trash').forEach(function(trash) {
+            trash.style.pointerEvents = disabled ? 'none' : 'auto';
+        });
+    }
+    
 
     // 初始化时调用一次，以确保正确显示初始任务数量
     renderData();
