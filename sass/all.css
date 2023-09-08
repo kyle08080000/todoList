@@ -14455,4 +14455,9 @@ input:focus {
   outline: none;
   border-color: transparent;
   box-shadow: none;
+}
+
+.list-group-item {
+  position: relative;
+  transition: top 0.5s;
 }/*# sourceMappingURL=all.css.map */

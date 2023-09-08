@@ -72,18 +72,6 @@ a{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 .nav{
     border-bottom: 1px solid $gray-300;
     &-link{
@@ -112,6 +100,14 @@ input:focus {
     border-color: transparent;
     box-shadow: none;
 }
+
+
+//  排序按鈕
+.list-group-item {
+    position: relative;
+    transition: top 0.5s;
+}
+// 排序按鈕-過度動畫
 
 
 
