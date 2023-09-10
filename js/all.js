@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 渲染数据到 HTML
     function renderData() {
+        if (isAnimating) return;
         listGroup.innerHTML = '';
         const sortedData = [...data].sort((a, b) => {
             if (sortCheckbox.checked) {
@@ -60,22 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         pendingCountElement.textContent = '待完成項目' + pendingCount + '個';
     }
 
-    // 更改完成状态
-    listGroup.addEventListener('change', function(e) {
-        if (isAnimating) return;
-        const target = e.target;
-        if (target.matches('.trash, .trash *')) {
-            e.preventDefault();
-            const listItem = target.closest('li');
-            const originalIndex = parseInt(listItem.getAttribute('data-original-index'), 10);
-            listItem.classList.add('animate__animated', 'animate__backOutRight');
-            listItem.addEventListener('animationend', () => {
-                data = data.filter(item => item.originalIndex !== originalIndex);
-                renderData();
-            });
-        }
-    });
-
     // 新增待辦事項
     addButton.addEventListener('click', function(e) {
         if (newitem.value === "") {
@@ -97,24 +82,24 @@ document.addEventListener('DOMContentLoaded', function() {
             listItem.classList.add('animate__animated', 'animate__backOutRight');
             isAnimating = true;
             toggleButtons(true);
-            listItem.addEventListener('animationend', () => {
+            listItem.addEventListener('animationend', () => { 
                 isAnimating = false;
                 toggleButtons(false);
                 data = data.filter(item => item.originalIndex !== originalIndex);
+                data.forEach((item, index) => {
+                    item.originalIndex = index;
+                });
                 renderData();
             });
+
         }
     });
-
-
-
 
     // 排序已完成項目
     sortCheckbox.addEventListener('change', function(e) {
         renderData();
     });
 
-    
     // 清除所有已完成的任務
     clearButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -138,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderData();
         });
     });
+    
 
     // 檢查畫面是否有動畫正在執行
     function toggleButtons(disabled) {
@@ -151,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
             trash.style.pointerEvents = disabled ? 'none' : 'auto';
         });
     }
-    
 
     // 初始化时调用一次，以确保正确显示初始任务数量
     renderData();
