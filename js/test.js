@@ -10,47 +10,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const toastBody = document.querySelector('.toast-body');
 
     let data = [
-        { 
-            category: "全部",
-            todos: [
-                { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
-                { content: "咖啡", completed: false, originalIndex: 1 },
-                { content: "告訴 steven 不要再暈船了", completed: false, originalIndex: 2 }
-            ]
+        { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
+        { content: "咖啡", completed: false, originalIndex: 1 },
+        { content: "告訴 steven 不要再暈船了", completed: false, originalIndex: 2 },
+    ];
+    let dropdownMenuData = [
+        {
+            name: "全部",
+            todos: []
         }
     ];
 
 
     let isAnimating = false;
 
-    // 新增代辦類別 分類模組
+    // 新增代辦類別
     $(document).ready(function(){
         document.getElementById('liveToastBtn').addEventListener('click', function() {
             const category = document.querySelector('.new-category').value;
             if (category !== "") {
                 const newLi = document.createElement("li");
                 newLi.className = "nav-item";
-                newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`; //新增至漢堡選單
+                newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`;
                 document.querySelector('.navbar-nav').appendChild(newLi);
         
-                // 將新類別加入到 data 陣列
-                data.push({ category: category, todos: [] });
+                const categoryMenu = document.querySelector('.category-menu');
+                const categoryItem = document.createElement('li');
+        
+                dropdownMenuData.push({ name: category });
+                console.log(dropdownMenuData);
+        
+                dropdownMenuData.forEach(function(item, index) {
+                    categoryItem.innerHTML = `<a class="dropdown-item" href="#" data-num="${index}">${item.name}</a>`;
+                });
+                categoryMenu.appendChild(categoryItem);
         
                 toastBody.textContent = `${category} 已新增至右上角選單！`;
                 toast.show();
                 myModal.hide();
             }
         });
-
-
+        
+    
         document.querySelectorAll('.btn-close, .btn-secondary').forEach(function(element){
             element.addEventListener('click', function(){
                 myModal.hide();
             });
         });
     });
-
-
     
     
 
@@ -58,17 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderData() {
         if (isAnimating) return;
         listGroup.innerHTML = '';
-        const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const categoryObj = data.find(item => item.category === selectedCategory);
-        const sortedData = [...categoryObj.todos].sort((a, b) => {
+        const sortedData = [...data].sort((a, b) => {
             if (sortCheckbox.checked) {
-                return a.completed - b.completed;
+                return a.completed - b.completed || a.originalIndex - b.originalIndex;
             }
-            return categoryObj.todos.indexOf(a) - categoryObj.todos.indexOf(b);
+            return a.originalIndex - b.originalIndex;
         });
         sortedData.forEach((item, index) => {
             const listItem = document.createElement('li');
             listItem.className = 'list-group-item py-3 px-4 mb-1 d-flex';
+            listItem.setAttribute('data-original-index', item.originalIndex);
             listItem.innerHTML = `
                 <div class="overflow-auto me-auto">
                     <span class="task-name px-2 text-nowrap text-break ${item.completed ? 'striked' : ''}">${item.content}</span>
@@ -95,15 +101,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         updatePendingCount();
     }
-    
+
     // 更新待完成任务数量
     function updatePendingCount() {
-        const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const categoryObj = data.find(item => item.category === selectedCategory);
-        const pendingCount = categoryObj.todos.filter(item => !item.completed).length;
+        const pendingCount = data.filter(item => !item.completed).length;
         pendingCountElement.textContent = '待完成項目' + pendingCount + '個';
     }
-    
 
     // 新增待辦事項
     addButton.addEventListener('click', function(e) {
@@ -111,13 +114,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("請輸入內容");
             return;
         }
-        const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const categoryObj = data.find(item => item.category === selectedCategory);
-        categoryObj.todos.push({ content: newitem.value, completed: false });
+        data.push({ content: newitem.value, completed: false, originalIndex: data.length });
         newitem.value = '';
         renderData();
     });
-    
 
     // 刪除待辦事項
     listGroup.addEventListener('click', function(e) {
@@ -125,21 +125,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if (target.matches('.trash, .trash *')) {
             e.preventDefault();
             const listItem = target.closest('li');
-            const index = [...listGroup.children].indexOf(listItem);
-            const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-            const categoryObj = data.find(item => item.category === selectedCategory);
+            const originalIndex = parseInt(listItem.getAttribute('data-original-index'), 10);
             listItem.classList.add('animate__animated', 'animate__backOutRight');
             isAnimating = true;
             toggleButtons(true);
-            listItem.addEventListener('animationend', () => {
+            listItem.addEventListener('animationend', () => { 
                 isAnimating = false;
                 toggleButtons(false);
-                categoryObj.todos.splice(index, 1);
+                data = data.filter(item => item.originalIndex !== originalIndex);
+                data.forEach((item, index) => {
+                    item.originalIndex = index;
+                });
                 renderData();
             });
+
         }
     });
-    
 
     // 排序已完成項目
     sortCheckbox.addEventListener('change', function(e) {
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clearButton.addEventListener('click', function(e) {
         e.preventDefault();
         const completedItems = Array.from(listGroup.children).filter(listItem =>
-            listItem.querySelector('.form-check-input').checked
+            data[parseInt(listItem.getAttribute('data-original-index'), 10)].completed
         );
         if (completedItems.length === 0) return;
         completedItems.forEach(listItem => {
@@ -174,13 +175,14 @@ document.addEventListener('DOMContentLoaded', function() {
         completedItems[completedItems.length - 1].addEventListener('animationend', () => {
             isAnimating = false;
             toggleButtons(false);
-            data.forEach(category => {
-                category.todos = category.todos.filter(todo => !todo.completed);
+            data = data.filter(item => !item.completed);
+            // Update originalIndex of the remaining items
+            data.forEach((item, index) => {
+                item.originalIndex = index;
             });
             renderData();
         });
     });
-    
 
     
 
@@ -200,3 +202,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化时调用一次，以确保正确显示初始任务数量
     renderData();
 });
+
+
+請幫我把 
+
+改成：
+let data = [
+    { 
+        category: "全部",
+        todos: [
+            { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
+            { content: "咖啡", completed: false, originalIndex: 1 },
+            { content: "告訴 steven 不要再暈船了", completed: false, originalIndex: 2 }
+        ]
+    }
+];
+的資料結構。
+
