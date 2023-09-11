@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if(category !== ""){
                 const newLi = document.createElement("li");
                 newLi.className = "nav-item";
-                newLi.innerHTML = `<a class="nav-link" href="#">•${category}</a>`;
+                newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`;
                 document.querySelector('.navbar-nav').appendChild(newLi);
                 toastBody.textContent = `${category} 已新增至右上角選單`;
-                toast.show();
+                toast.show(); // 吐司
                 myModal.hide();
             }
         });
@@ -43,19 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    
-    
-    
-    
-    // 吐司
-    // document.getElementById('exampleModal').addEventListener('hidden.bs.modal', function(event) {
-    //     var toastTrigger = document.getElementById('liveToastBtn')
-    //     var toastLiveExample = document.getElementById('liveToast')
-    //     if (toastTrigger) {
-    //         var toast = new bootstrap.Toast(toastLiveExample)
-    //         toast.show()
-    //     }
-    // });
     
 
     
@@ -149,15 +136,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 初始化clearButton的顏色
-clearButton.style.color = "gray";
+    clearButton.style.color = "gray";
 
-// 更新clearButton的顏色
-listGroup.addEventListener('click', function() {
-    const completedItems = Array.from(listGroup.children).filter(listItem =>
-        listItem.querySelector('input').checked
-    );
-    clearButton.style.color = completedItems.length === 0 ? "gray" : "red";
-});
+    // 更新clearButton的顏色
+    listGroup.addEventListener('click', function() {
+        const completedItems = Array.from(listGroup.children).filter(listItem =>
+            listItem.querySelector('input').checked
+        );
+        clearButton.style.color = completedItems.length === 0 ? "gray" : "red";
+    });
 
 
 
