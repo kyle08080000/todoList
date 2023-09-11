@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.querySelector(".addButton");
     const sortCheckbox = document.getElementById('flexSwitchCheckDefault');
     const clearButton = document.querySelector('.clear');
-    const pendingCountElement = document.getElementById('pending-count');
+    const pendingCountElement = document.querySelector('.pending-count');
+ 
+
 
     let data = [
         { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
@@ -13,6 +15,47 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     let isAnimating = false;
+
+    $(document).ready(function(){
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+    
+        document.getElementById('liveToastBtn').addEventListener('click', function() {
+            const category = document.querySelector('.new-category').value;
+            if(category !== ""){
+                const newLi = document.createElement("li");
+                newLi.className = "nav-item";
+                newLi.innerHTML = `<a class="nav-link" href="#">${category}</a>`;
+                document.querySelector('.navbar-nav').appendChild(newLi);
+                toast.show();
+                myModal.hide();
+            }
+        });
+    
+        document.querySelectorAll('.btn-close, .btn-secondary').forEach(function(element){
+            element.addEventListener('click', function(){
+                myModal.hide();
+            });
+        });
+    });
+    
+    
+    
+    
+    // 吐司
+    // document.getElementById('exampleModal').addEventListener('hidden.bs.modal', function(event) {
+    //     var toastTrigger = document.getElementById('liveToastBtn')
+    //     var toastLiveExample = document.getElementById('liveToast')
+    //     if (toastTrigger) {
+    //         var toast = new bootstrap.Toast(toastLiveExample)
+    //         toast.show()
+    //     }
+    // });
+    
+
+    
+    
+    
 
     // 渲染数据到 HTML
     function renderData() {

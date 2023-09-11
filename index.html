@@ -13,6 +13,48 @@
 </style>
 <body>
     <div class="container">
+        <nav class="navbar navbar-light fixed-top">
+            <div class="container-fluid position-relative">
+                <button class="navbar-toggler btn btn-dark d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <!-- <i class="bi bi-list"></i> -->
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="offcanvas offcanvas-end w-85" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">待辦事項分類</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                    <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </nav>
+
         <div class="row">
             <div class="col-md-6 col-lg-5 mx-auto">
                 <div class="title mt-5 mb-3 text-center">
@@ -25,36 +67,51 @@
                 <div class="card shadow">
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
                         <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">全部</a>
-                        <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">work</a>
-                        <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">全聯補貨</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
                         
                         <!-- <a class="nav-link px-3 text-nowrap" href="#" data-category="add">
                             <i class="bi bi-plus-circle"></i>
                         </a> -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i class="bi bi-plus-circle"></i>
+                        <button type="button" class="nav-link px-3 py-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <!-- <i class="bi bi-plus-circle"></i> -->
+                            <i class="bi bi-window-plus"></i>
                         </button>
                         
-                        <!-- Modal -->
+                <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">新增待辦分類</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">新增分類</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <input class="form-control" type="text" placeholder="請輸入分類名稱" aria-label="default input example">
+                                        <input class="new-category form-control" type="text" placeholder="請輸入分類名稱" aria-label="default input example">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                                        <button type="button" class="btn btn-primary">儲存</button>
+                                        <button type="button" class="store btn btn-primary" id="liveToastBtn">儲存</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </nav>
+                    <!-- 吐司訊息 -->
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                            <strong class="me-auto">todo list</strong>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                新增成功
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- 待辦列表 -->
                     <ul class="list-group">
@@ -97,7 +154,7 @@
                         <!-- 更新任務數量 -->
                         <div class="row my-3">
                             <div class="col-6 text-nowrap pending">
-                                <span class="ms-4" id="pending-count">待完成項目5個</span>
+                                <span class="pending-count ms-4" id="pending-count">待完成項目5個</span>
                             </div>
                             <div class="col-6 text-end text-nowrap">
                                 <a href="#" class="clear me-4">清除已完成項目</a>
@@ -113,7 +170,7 @@
 
 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/3d5b6364a2.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="js/all.js"></script>

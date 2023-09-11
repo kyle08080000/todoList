@@ -4,10 +4,116 @@ a{
 
 .list-group-item{
     background-color: $gray-100;
-    .trash:hover{
-        color: red;
+    .trash{
+        &:hover{
+            color: red;
+        }
     }
 }
+/* 上述的樣式會影響到 '待辦列表' 中的每個項目。 '.trash:hover' 是刪除圖示的樣式。 */
+
+.task-name {
+    display: inline-block;
+    position: relative;
+    color: #000;
+    transition: color 0.3s;
+
+    &.striked {
+        color: rgba(0, 0, 0, 0.5); 
+    }
+
+    &.striked::before, &.unstriked::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.5); 
+    }
+
+    &.striked::before {
+        animation: strikeThrough 0.3s forwards;
+    }
+
+    &.unstriked::before {
+        animation: unstrike 0.3s forwards;
+    }
+}
+/* 這是任務名稱的樣式，這些樣式會影響到 '待辦列表' 中的每個項目的文字樣式。*/
+
+
+@keyframes strikeThrough {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes unstrike {
+    0% { width: 100%; }
+    100% { width: 0; }
+}
+
+
+.navbar-toggler {
+    position: absolute;
+    top: 2.5rem;
+    right: 1rem;
+    border: 0;
+    border-radius: 50%; /* 使邊框看起來像正圓形 */
+    width: 40px; /* 必須指定一個固定的寬度 */
+    height: 40px; /* 必須指定一個固定的高度 */
+    background-color: rgba(128, 128, 128, 0.5);
+    & > .fa-bars{
+
+    }
+}
+
+
+
+.nav{
+    border-bottom: 1px solid $gray-300;
+
+    &-link{
+        color: $secondary;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+.bi-window-plus{
+    font-size: 1.5rem;
+}
+/* 這些樣式會影響到分類標籤 '全部', '已完成', '未完成' 和 '+' 圖示的樣式。 */
+
+
+.clear{
+    color: $gray-500;
+    text-decoration: none;
+}
+
+.form-check.form-switch {
+    display: flex;
+
+    .form-check-input {
+        order: 2;
+    }
+}
+/* 這是 '排序已完成項目' 切換按鈕的樣式。 */
+
+
+input:focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+/* 這是 '新增分類' 和 '新增待辦事項' 輸入框的焦點樣式。 */
+
+
+.list-group-item {
+    position: relative;
+    transition: top 0.5s;
+}
+/* 這是 '待辦列表' 中的每個項目的樣式。 */
+
+
 
 // @keyframes fadeOutText {
 //     from {
@@ -23,91 +129,5 @@ a{
 //     animation: fadeOutText 0.3s forwards;
 //     opacity: 0.5;
 // }
-
-@keyframes strikeThrough {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-@keyframes unstrike {
-    0% {
-        width: 100%;
-    }
-    100% {
-        width: 0;
-    }
-}
-
-.task-name {
-    display: inline-block;
-    position: relative;
-    color: #000;
-    transition: color 0.3s;
-}
-
-.task-name.striked {
-    color: rgba(0, 0, 0, 0.5); 
-}
-
-.task-name.striked::before, .task-name.unstriked::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.5); 
-}
-
-.task-name.striked::before {
-    animation: strikeThrough 0.3s forwards;
-}
-
-.task-name.unstriked::before {
-    animation: unstrike 0.3s forwards;
-}
-
-
-
-.nav{
-    border-bottom: 1px solid $gray-300;
-    &-link{
-        color: $secondary;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-}
-
-
-.clear{
-    color: $gray-500;
-    text-decoration: none;
-}
-
-.form-check.form-switch {
-    display: flex;
-}
-/* 設定 input 的順序為 2，讓它出現在前面 */
-.form-check.form-switch .form-check-input {
-    order: 2;
-}
-
-input:focus {
-    outline: none;
-    border-color: transparent;
-    box-shadow: none;
-}
-
-
-//  排序按鈕
-.list-group-item {
-    position: relative;
-    transition: top 0.5s;
-}
-// 排序按鈕-過度動畫
-
 
 
