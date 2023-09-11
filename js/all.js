@@ -148,6 +148,19 @@ document.addEventListener('DOMContentLoaded', function() {
         renderData();
     });
 
+    // 初始化clearButton的顏色
+clearButton.style.color = "gray";
+
+// 更新clearButton的顏色
+listGroup.addEventListener('click', function() {
+    const completedItems = Array.from(listGroup.children).filter(listItem =>
+        listItem.querySelector('input').checked
+    );
+    clearButton.style.color = completedItems.length === 0 ? "gray" : "red";
+});
+
+
+
     // 清除所有已完成的任務
     clearButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -171,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderData();
         });
     });
+
     
 
     // 檢查畫面是否有動畫正在執行
