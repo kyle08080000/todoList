@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newLi.className = "nav-item";
                 newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`;
                 document.querySelector('.navbar-nav').appendChild(newLi);
-                toastBody.textContent = `${category} 已新增至右上角選單`;
+                toastBody.textContent = `${category} 已新增至右上角選單！`;
                 toast.show(); // 吐司
                 myModal.hide();
             }
@@ -42,10 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
-    
-
-    
     
     
 
