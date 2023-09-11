@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortCheckbox = document.getElementById('flexSwitchCheckDefault');
     const clearButton = document.querySelector('.clear');
     const pendingCountElement = document.querySelector('.pending-count');
+
  
 
 
@@ -16,17 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let isAnimating = false;
 
+    // 新增代辦類別
     $(document).ready(function(){
         const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
         const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        const toastBody = document.querySelector('.toast-body');
     
         document.getElementById('liveToastBtn').addEventListener('click', function() {
             const category = document.querySelector('.new-category').value;
             if(category !== ""){
                 const newLi = document.createElement("li");
                 newLi.className = "nav-item";
-                newLi.innerHTML = `<a class="nav-link" href="#">${category}</a>`;
+                newLi.innerHTML = `<a class="nav-link" href="#">•${category}</a>`;
                 document.querySelector('.navbar-nav').appendChild(newLi);
+                toastBody.textContent = `${category} 已新增至右上角選單`;
                 toast.show();
                 myModal.hide();
             }
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+    
     
     
     
