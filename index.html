@@ -13,6 +13,8 @@
 </style>
 <body>
     <div class="container">
+
+        <!-- 漢堡選單 -->
         <nav class="navbar navbar-light fixed-top">
             <div class="container-fluid position-relative">
                 <button class="navbar-toggler btn btn-dark d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -28,7 +30,9 @@
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <form class="d-flex mb-3">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </form>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">全部</a>
@@ -50,20 +54,16 @@
                 </div>
                 
                 <div class="card shadow">
+                    <!-- 卡片導航欄 -->
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
                         <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">全部</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
-                        
-                        <!-- <a class="nav-link px-3 text-nowrap" href="#" data-category="add">
-                            <i class="bi bi-plus-circle"></i>
-                        </a> -->
                         <!-- Button trigger modal -->
                         <button type="button" class="nav-link px-3 py-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <!-- <i class="bi bi-plus-circle"></i> -->
                             <i class="bi bi-window-plus"></i>
                         </button>
-                        
                 <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -83,18 +83,21 @@
                             </div>
                         </div>
                     </nav>
-                <!-- 吐司訊息 -->
-                    <div class="position-fixed top-50 start-50 translate-middle p-3 w-85" style="z-index: 11">
-                        <div id="liveToast" class="toast bg-black text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="d-flex">
-                                <div class="toast-body fw-bold">
-                                    新增成功
-                                </div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
 
+                    <!-- 吐司訊息 -->
+                        <div class="position-fixed top-50 start-50 translate-middle p-3 w-85" style="z-index: 11">
+                            <div id="liveToast" class="toast bg-black text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body fw-bold">
+                                        新增成功
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+
+
                     
                     <!-- 待辦列表 -->
                     <div class="overflow-auto">
@@ -116,18 +119,13 @@
                                         <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
 
                                         <button class="btn btn-outline-secondary " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <!-- <i class="bi bi-inboxes-fill"></i> -->
-                                            <!-- <i class="bi bi-inboxes"></i> -->
                                             <i class="bi bi-sliders2"></i>
                                         </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#">work</a></li>
-                                            <li><a class="dropdown-item" href="#">全聯補貨</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        <ul class="category-menu dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#">新增分類？</a></li>
+                                            <li><a class="dropdown-item" href="#">全部</a></li>
                                         </ul>
-
                                         <button class="btn btn-outline-secondary addButton" type="submit" id="button-addon2">
                                             <!-- <i class="bi bi-plus-lg"></i> -->
                                             <i class="bi bi-arrow-right"></i>

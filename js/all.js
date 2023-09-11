@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortCheckbox = document.getElementById('flexSwitchCheckDefault');
     const clearButton = document.querySelector('.clear');
     const pendingCountElement = document.querySelector('.pending-count');
-
- 
-
+    const dropdownMenu = document.querySelector('.category-menu');
+    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+    const toastBody = document.querySelector('.toast-body');
 
     let data = [
         { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
@@ -19,10 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 新增代辦類別
     $(document).ready(function(){
-        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
-        const toastBody = document.querySelector('.toast-body');
-    
+        
+        // document.getElementById('liveToastBtn').addEventListener('click', function() {
+        //     const category = document.querySelector('.new-category').value;
+        //     if(category !== ""){
+        //         const newLi = document.createElement("li");
+        //         newLi.className = "nav-item";
+        //         newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`;
+        //         document.querySelector('.navbar-nav').appendChild(newLi);
+        //         toastBody.textContent = `${category} 已新增至右上角選單！`;
+        //         toast.show(); // 吐司
+        //         myModal.hide();
+        //     }
+        // });
         document.getElementById('liveToastBtn').addEventListener('click', function() {
             const category = document.querySelector('.new-category').value;
             if(category !== ""){
@@ -30,11 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 newLi.className = "nav-item";
                 newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`;
                 document.querySelector('.navbar-nav').appendChild(newLi);
+        
+                const categoryMenu = document.querySelector('.category-menu');
+                const categoryItem = document.createElement('li');
+                categoryItem.innerHTML = `<li><a class="dropdown-item" href="#">${category}</a></li>`;
+                categoryMenu.appendChild(categoryItem);
+        
                 toastBody.textContent = `${category} 已新增至右上角選單！`;
                 toast.show(); // 吐司
                 myModal.hide();
             }
         });
+        
     
         document.querySelectorAll('.btn-close, .btn-secondary').forEach(function(element){
             element.addEventListener('click', function(){
