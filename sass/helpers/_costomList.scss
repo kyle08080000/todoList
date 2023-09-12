@@ -1,10 +1,45 @@
+body{
+    background: #AABFDA;
+    color: #fff;
+}
+
+h1,span{
+    color: #fff;
+}
+
 a{
-    color: black;
+    color: #AABFDA;
+}
+
+
+
+
+.card{
+    background-color: #cedef4;
+    .nav-tabs > a{
+        color: #7185A8;
+
+    }
+}
+.active{
+    background-color: #879fc9 !important;
+    color: #c7dbf6 !important;
+}
+.addModal{
+    color: #7185A8;
+}
+
+.pending-count{
+    color: #7185A8;
 }
 
 .list-group-item{
-    background-color: $gray-100;
+    background-color: #879fc9;
+    .task-name{
+        color: #fff;
+    }
     .trash{
+        color: #cedef4;
         &:hover{
             color: red;
         }
@@ -15,7 +50,7 @@ a{
 .task-name {
     display: inline-block;
     position: relative;
-    color: #000;
+    color: #7185A8;
     transition: color 0.3s;
 
     &.striked {
@@ -41,6 +76,15 @@ a{
 }
 /* 這是任務名稱的樣式，這些樣式會影響到 '待辦列表' 中的每個項目的文字樣式。*/
 
+// 吐司
+.Toast{
+    background-color: #879fc9;
+
+    .toast-body{
+        background-color: #879fc9;
+        color: #fff;
+    }
+}
 
 @keyframes strikeThrough {
     0% { width: 0; }
@@ -53,6 +97,7 @@ a{
 }
 
 
+// 漢堡選單
 .navbar-toggler {
     position: absolute;
     top: 2.5rem;
@@ -61,9 +106,10 @@ a{
     border-radius: 50%; /* 使邊框看起來像正圓形 */
     width: 40px; /* 必須指定一個固定的寬度 */
     height: 40px; /* 必須指定一個固定的高度 */
-    background-color: rgba(128, 128, 128, 0.5);
+    // background-color: rgba(128, 128, 128, 0.5);
+    background-color: #7185A8;
     & > .fa-bars{
-
+        color: #AABFDA;
     }
 }
 
@@ -91,11 +137,14 @@ a{
 
 .form-check.form-switch {
     display: flex;
+    color: #7185A8;
 
     .form-check-input {
+        background-color: #7185A8;
         order: 2;
     }
 }
+
 /* 這是 '排序已完成項目' 切換按鈕的樣式。 */
 
 
@@ -112,26 +161,5 @@ input:focus {
     transition: top 0.5s;
 }
 /* 這是 '待辦列表' 中的每個項目的樣式。 */
-
-
-.Toast{
-    // top: 30rem;
-}
-
-
-// @keyframes fadeOutText {
-//     from {
-//         opacity: 1;
-//     }
-//     to {
-//         opacity: 0.5;
-//     }
-// }
-
-// .striked {
-//     text-decoration: line-through;
-//     animation: fadeOutText 0.3s forwards;
-//     opacity: 0.5;
-// }
 
 

@@ -1,5 +1,7 @@
 // Variables
 //
+// kyle
+$mytoast: #879fc9;
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
@@ -837,7 +839,7 @@ $btn-font-size-lg:            $input-btn-font-size-lg !default;
 $btn-border-width:            $input-btn-border-width !default;
 
 $btn-font-weight:             $font-weight-normal !default;
-$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+$btn-box-shadow:              0;//inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default; //kyle
 $btn-focus-width:             $input-btn-focus-width !default;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity:        .65 !default;
@@ -948,15 +950,15 @@ $form-check-transition:                   null !default;
 
 $form-check-input-active-filter:          brightness(90%) !default;
 
-$form-check-input-bg:                     $gray-100;//$input-bg !default; //kyle
-$form-check-input-border:                 2px solid $black !default; //kyle
+$form-check-input-bg:                     $input-bg !default; //kyle
+$form-check-input-border:                 0;//2px solid $black !default; //kyle
 $form-check-input-border-radius:          .25em !default;
 $form-check-radio-border-radius:          50% !default;
 $form-check-input-focus-border:           $input-focus-border-color !default;
 $form-check-input-focus-box-shadow:       $focus-ring-box-shadow !default;
 
 $form-check-input-checked-color:          $component-active-color !default;
-$form-check-input-checked-bg-color:       $black;//$component-active-bg !default;
+$form-check-input-checked-bg-color:       #AABFDA;//$component-active-bg !default; //kyle
 $form-check-input-checked-border-color:   $form-check-input-checked-bg-color !default;
 $form-check-input-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !default;
 $form-check-radio-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>") !default;
@@ -1470,16 +1472,16 @@ $toast-padding-x:                   .75rem !default;
 $toast-padding-y:                   .5rem !default;
 $toast-font-size:                   .875rem !default;
 $toast-color:                       null !default;
-$toast-background-color:            rgba(var(--#{$prefix}body-bg-rgb), .85) !default;
-$toast-border-width:                var(--#{$prefix}border-width) !default;
-$toast-border-color:                var(--#{$prefix}border-color-translucent) !default;
-$toast-border-radius:               var(--#{$prefix}border-radius) !default;
+$toast-background-color:            $mytoast;//rgba(var(--#{$prefix}body-bg-rgb), .85) !default; //kyle
+$toast-border-width:                var(--#{$prefix}border-width) !default; //kyle
+$toast-border-color:                $mytoast;//var(--#{$prefix}border-color-translucent) !default; //kyle
+$toast-border-radius:               var(--#{$prefix}border-radius) !default; //kyle
 $toast-box-shadow:                  var(--#{$prefix}box-shadow) !default;
 $toast-spacing:                     $container-padding-x !default;
 
 $toast-header-color:                var(--#{$prefix}secondary-color) !default;
 $toast-header-background-color:     rgba(var(--#{$prefix}body-bg-rgb), .85) !default;
-$toast-header-border-color:         $toast-border-color !default;
+$toast-header-border-color:         $mytoast;//$toast-border-color !default; //kyle
 // scss-docs-end toast-variables
 
 

@@ -15,34 +15,37 @@
     <div class="container">
 
         <!-- 漢堡選單 -->
-        <nav class="navbar navbar-light fixed-top">
+        <nav class="navbar navbar-light">
             <div class="container-fluid position-relative">
-                <button class="navbar-toggler btn btn-dark d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    <!-- <i class="bi bi-list"></i> -->
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="offcanvas offcanvas-end w-85" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">待辦事項分類</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <form class="d-flex mb-3">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">全部</a>
-                        </li>
-                    </ul>
-                    
-                </div>
+                <div class="position-absolute top-0 end-0">
+                    <button class="navbar-toggler btn btn-dark d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="offcanvas offcanvas-end w-85" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">待辦事項分類</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <form class="d-flex mb-3">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                            <li class="nav-item">
+                                <a class="bar-nav-link nav-link active" aria-current="page" href="#">全部</a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    </div>
+
                 </div>
             </div>
         </nav>
+
 
         <div class="row">
 
@@ -58,12 +61,13 @@
 
                 <!-- 卡片導航欄 -->
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
-                        <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">所有的分類</a>
+                        <a class="Category nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">
+
+                        </a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="nav-link px-3 py-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <!-- <i class="bi bi-plus-circle"></i> -->
+            <!-- 新增分類模組按鈕 -->
+                        <button type="button" class="btn addModal px-3 py-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-window-plus"></i>
                         </button>
                 <!-- Modal -->
@@ -99,7 +103,7 @@
                         <div class="col position-relative">
                             <!-- 吐司訊息 -->
                             <div class="Toast position-absolute top-0 start-50 translate-middle-x" style="z-index: 11">
-                                <div id="liveToast" class="toast bg-black text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div id="liveToast" class="toast text-white" role="alert" aria-live="assertive" aria-atomic="true">
                                     <div class="d-flex w-100">
                                         <div class="toast-body fw-bold text-break">
                                             吐司顯示的訊息
@@ -112,7 +116,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 Sort-items">
                             <!-- 排序項目 -->
                             <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
                                 <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
