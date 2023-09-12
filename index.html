@@ -45,6 +45,7 @@
         </nav>
 
         <div class="row">
+
             <div class="col-md-6 col-lg-5 mx-auto">
                 <div class="title mt-4 mb-3 text-center">
                     <h1 class="fw-bold">
@@ -54,9 +55,10 @@
                 </div>
                 
                 <div class="card shadow">
-                    <!-- 卡片導航欄 -->
+
+                <!-- 卡片導航欄 -->
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
-                        <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">全部</a>
+                        <a class="nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">所有的分類</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
                         <!-- Button trigger modal -->
@@ -82,23 +84,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 吐司訊息 -->
-                        <div class="position-fixed Toast start-50 translate-middle p-3 w-85" style="z-index: 11">
-                            <div id="liveToast" class="toast bg-black text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="d-flex">
-                                    <div class="toast-body fw-bold">
-                                        新增成功
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-
-                            </div>
-                        </div>
                     </nav>
-
                     
-
-
                     
                     <!-- 待辦列表 -->
                     <div class="overflow-auto">
@@ -106,12 +93,36 @@
     
                         </ul>
                     </div>
-    
-                        <!-- 排序項目 -->
-                        <div class="form-check form-switch ms-auto mt-1 mb-4 me-4 align-items-center">
-                            <label class="form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
-                            <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+
+    <!-- 吐司訊息 ＆ 排序項目 -->
+                    <div class="row">
+                        <div class="col position-relative">
+                            <!-- 吐司訊息 -->
+                            <div class="Toast position-absolute top-0 start-50 translate-middle-x" style="z-index: 11">
+                                <div id="liveToast" class="toast bg-black text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex w-100">
+                                        <div class="toast-body fw-bold text-break">
+                                            吐司顯示的訊息
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- 排序項目 -->
+                            <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
+                                <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
+                                <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
     
                         <!-- 新增待辦事項 -->
                         <div class="row">

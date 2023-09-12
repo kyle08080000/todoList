@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             category: "全部",
             todos: [
-                { content: "蝦皮電商系統", completed: false, originalIndex: 0 },
-                { content: "咖啡", completed: false, originalIndex: 1 },
-                { content: "告訴 steven 不要再暈船了", completed: false, originalIndex: 2 }
+                { content: "Learn VueJs", completed: false, originalIndex: 0 },
+                { content: "Code a todo list", completed: false, originalIndex: 1 },
+                { content: "Learn something else", completed: false, originalIndex: 2 }
             ]
         }
     ];
@@ -32,11 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 newLi.className = "nav-item";
                 newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`; //新增至漢堡選單
                 document.querySelector('.navbar-nav').appendChild(newLi);
-        
+
+                // 更新下拉選單
+                const newOption = document.createElement("li");
+                newOption.innerHTML = `<a class="dropdown-item" href="#">${category}</a>`;
+                document.querySelector('.category-menu').appendChild(newOption);
+
                 // 將新類別加入到 data 陣列
                 data.push({ category: category, todos: [] });
-        
-                toastBody.textContent = `${category} 已新增至右上角選單！`;
+
+                toastBody.textContent = `「${category}」 已新增至右上角選單！`;
                 toast.show();
                 myModal.hide();
             }
@@ -51,20 +56,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    
-    
+    // 卡片導航欄
+    function onNavLinkClick(event) { 
+        event.preventDefault();
+        const clickedNavLink = event.target;
+        document.querySelectorAll('.nav-link').forEach(function(navLink) {
+            navLink.classList.remove('active');
+        });
+        clickedNavLink.classList.add('active');
+        const allCategoryTab = document.querySelector('.nav-link[data-category="all"]');
+        if (clickedNavLink !== allCategoryTab) {
+            allCategoryTab.textContent = clickedNavLink.textContent.trim();
+        } else {
+            allCategoryTab.textContent = '所有的分類';
+        }
+        renderData();
+    }
+    document.querySelectorAll('.nav-link').forEach(function(navLink) {
+        navLink.addEventListener('click', onNavLinkClick);
+    });
+
 
     // 渲染数据到 HTML
     function renderData() {
         if (isAnimating) return;
         listGroup.innerHTML = '';
         const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const categoryObj = data.find(item => item.category === selectedCategory);
-        const sortedData = [...categoryObj.todos].sort((a, b) => {
+        let sortedData = [];
+        if (selectedCategory === '已完成' || selectedCategory === '未完成') {
+            const completed = selectedCategory === '已完成';
+            data.forEach(categoryObj => {
+                sortedData = sortedData.concat(categoryObj.todos.filter(item => item.completed === completed));
+            });
+        } else {
+            data.forEach(categoryObj => {
+                sortedData = sortedData.concat([...categoryObj.todos]);
+            });
+        }
+        sortedData.sort((a, b) => {
             if (sortCheckbox.checked) {
                 return a.completed - b.completed;
             }
-            return categoryObj.todos.indexOf(a) - categoryObj.todos.indexOf(b);
+            return sortedData.indexOf(a) - sortedData.indexOf(b);
         });
         sortedData.forEach((item, index) => {
             const listItem = document.createElement('li');
@@ -96,13 +129,30 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePendingCount();
     }
     
+
+    
+    
+    
     // 更新待完成任务数量
     function updatePendingCount() {
         const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const categoryObj = data.find(item => item.category === selectedCategory);
-        const pendingCount = categoryObj.todos.filter(item => !item.completed).length;
+        let todos = [];
+        if (selectedCategory === '已完成' || selectedCategory === '未完成') {
+            const completed = selectedCategory === '已完成';
+            data.forEach(categoryObj => {
+                todos = todos.concat(categoryObj.todos.filter(item => item.completed === completed));
+            });
+        } else {
+            data.forEach(categoryObj => {
+                todos = todos.concat(categoryObj.todos);
+            });
+        }
+        const pendingCount = todos.filter(item => !item.completed).length;
         pendingCountElement.textContent = '待完成項目' + pendingCount + '個';
     }
+
+
+    
     
 
     // 新增待辦事項
