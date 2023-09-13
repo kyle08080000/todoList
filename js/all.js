@@ -13,9 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             category: "全部",
             todos: [
-                { content: "Learn VueJs", completed: false, originalIndex: 0 },
-                { content: "Code a todo list", completed: false, originalIndex: 1 },
-                { content: "Learn something else", completed: false, originalIndex: 2 }
+                { content: "房租", completed: false, originalIndex: 0 },
+                { content: "保險", completed: false, originalIndex: 1 },
+                { content: "電費", completed: false, originalIndex: 2 },
+                { content: "先來杯咖啡吧", completed: false, originalIndex: 3 }
             ]
         }
     ];
