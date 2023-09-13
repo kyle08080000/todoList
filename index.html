@@ -35,7 +35,7 @@
                                 </button>
                             </form>
                             <li class="nav-item">
-                                <a class="bar-nav-link nav-link active" aria-current="page" href="#">全部</a>
+                                <a class="bar-nav-link nav-link fs-3 active" aria-current="page" href="#">全部</a>
                             </li>
                         </ul>
                         
@@ -59,9 +59,11 @@
                 <div class="card shadow">
                     <!-- 卡片導航欄 -->
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
-                        <a class="Category nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">
-                            全部
-                        </a>
+                        
+                            <a class="Category nav-link px-2 flex-fill overflow-auto text-nowrap active" aria-current="page" href="#" data-category="all">
+
+                            </a>
+                        
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
             <!-- 新增分類模組按鈕 -->
@@ -89,7 +91,7 @@
                     </nav>
                     <!-- 待辦列表 -->
                     <div class="overflow-auto">
-                        <ul class="list-group" style="height: 290px; overflow-y:scroll;">
+                        <ul class="list-group" style="height: 290px;">
     
                         </ul>
                     </div>
@@ -113,31 +115,31 @@
                         <div class="col-12 Sort-items">
                             <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
                                 <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
-                                <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
                             </div>
                         </div>
                     </div>
                     <!-- 新增待辦事項 -->
                     <div class="row">
                         <div class="col-10 mx-auto">
-                            <div class="input-group text-center my-3">
+                            <div class="input-group text-center my-3 position-relative">
                                     <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
 
-
-                                        <button class="btn dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-sliders2"></i>
-                                        </button>
-                                        <ul class="category-menu dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#">全部</a></li>
-                                            
-                                        </ul>
-
-
-                                    <button class="btn  addButton" type="submit" id="button-addon2">
-                                        <i class="bi bi-arrow-right"></i>
+                                    <button class="btn dropdown-btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-sliders2"></i>
                                     </button>
+                                    <button class="popover-btn position-absolute invisible"></button>
+
+
+                                    <ul class="row category-menu dropdown-menu dropdown-menu-end" style="width: 100px;">
+                                        <li><a class="dropdown-modal dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item active" href="#">全部</a></li>
+                                    </ul>
+
+                                <button class="btn  addButton" type="submit" id="button-addon2">
+                                    <i class="bi bi-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

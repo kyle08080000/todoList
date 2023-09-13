@@ -210,10 +210,18 @@ input:focus {
     }
 }
 
+.popover-btn{
+    right: 55px;
+
+}
+
 .category-menu{
     background-color: $offcanvas;
     color: #fff;
     & > li > a{
         color: #fff;
+        &.active{
+            background-color: $mybtn;
+        }
     }
 }

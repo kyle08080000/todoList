@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             category: "全部",
             todos: [
-                { content: "來杯咖啡", completed: false, originalIndex: 0 },
-                { content: "記得回 Steven 訊息", completed: false, originalIndex: 1 },
-                { content: "email 退款回信", completed: false, originalIndex: 2 }
+                { content: "來杯咖啡", completed: false},
+                { content: "記得回 Steven 訊息", completed: false},
+                { content: "email 退款回信", completed: false}
             ]
         }
     ];
@@ -47,111 +47,193 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    // 新增代辦類別 分類模組
+    // 初始化分類模組
     function initializeCategoryModule() {
-        // ... 這裡的代碼負責處理新增代辦類別的功能
-        $(document).ready(function(){
-            document.getElementById('liveToastBtn').addEventListener('click', function() {
-                const category = document.querySelector('.new-category').value;
-                if (category !== "") {
-                    const newLi = document.createElement("li");
-                    newLi.className = "nav-item";
-                    newLi.innerHTML = `<a class="bar-nav-link nav-link fw-bold" href="#">•${category}</a>`; //新增至漢堡選單
-                    document.querySelector('.navbar-nav').appendChild(newLi);
 
-                    // 更新下拉選單
-                    const newOption = document.createElement("li");
-                    newOption.innerHTML = `<a class="dropdown-item" href="#">${category}</a>`;
-                    document.querySelector('.category-menu').appendChild(newOption);
+        // 當按下 liveToastBtn 按鈕時，執行以下功能
+        document.getElementById('liveToastBtn').addEventListener('click', function() {
+            const categoryInput = document.querySelector('.new-category');
+            const category = categoryInput.value;
 
-                    // 將新類別加入到 data 陣列
-                    data.push({ category: category, todos: [] });
+            // 如果 category 不為空，執行以下功能
+            if (category !== "") {
+                // 創建新的 li 元素，設定它的 class 和 innerHTML，並加入到 navbar-nav 中
+                const newLi = document.createElement("li");
+                newLi.className = "nav-item";
+                newLi.innerHTML = `<a class="bar-nav-link nav-link fw-bold text-break" href="#">${category}</a>`;
+                document.querySelector('.navbar-nav').appendChild(newLi);
 
-                    toastBody.textContent = `「${category}」 已新增至右上角選單！`;
-                    toast.show();
-                    myModal.hide();
-                }
-            });
+                // 創建新的 li 元素，設定它的 innerHTML，並加入到 category-menu 中
+                const newOption = document.createElement("li");
+                newOption.innerHTML = `<a class="dropdown-item text-truncate" href="#">${category}</a>`;
+                document.querySelector('.category-menu').appendChild(newOption);
 
+                // 將新類別加入到 data 陣列
+                data.push({ category: category, todos: [] });
+                console.log(data);
 
-            document.querySelectorAll('.btn-close, .btn-secondary').forEach(function(element){
-                element.addEventListener('click', function(){
-                    myModal.hide();
-                });
-            });
-            // 漢堡選單
-            document.querySelectorAll('.navbar-nav .nav-link').forEach(function(navLink) {
-                navLink.addEventListener('click', function(event) {
-                    const clickedCategory = event.target.textContent.trim(); 
+                // 設定 toastBody 的文字內容，並顯示 toast
+                toastBody.textContent = `「${category}」 已新增至右上角選單！記得去查看喔！`;
+                toast.show();
+
+                // 隱藏 myModal
+                myModal.hide();
+
+                // 清空 category 輸入框
+                categoryInput.value = '';
+
+                // 為新創建的 navLink 添加事件監聽器
+                const newLiNavLink = newLi.querySelector('.bar-nav-link.nav-link');
+                newLiNavLink.addEventListener('click', function(event) {
+                    const clickedCategory = event.target.textContent.trim();
                     const allCategoryTab = document.querySelector('.nav.nav-tabs .Category');
                     allCategoryTab.textContent = clickedCategory;
                     renderData(clickedCategory);
                 });
-            });
-            
+            }
         });
+
+        // 為所有的 btn-close 和 btn-secondary 元素添加點擊事件，當點擊時隱藏 myModal
+        document.querySelectorAll('.btn-close, .btn-secondary').forEach(function(element){
+            element.addEventListener('click', function(){
+                myModal.hide();
+            });
+        });
+
+        // 為 navbar-nav 中的所有 nav-link 添加點擊事件，當點擊時執行以下功能
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(function(navLink) {
+            navLink.addEventListener('click', function(event) {
+                const clickedCategory = event.target.textContent.trim();
+                const allCategoryTab = document.querySelector('.nav.nav-tabs .Category');
+                allCategoryTab.textContent = clickedCategory;
+                renderData(clickedCategory);
+
+            });
+
+
+        });
+
     }
 
-    // 卡片導航欄
+
+    // 初始化卡片導航欄
     function initializeCardNav() {
-        // ... 這裡的代碼負責處理卡片導航欄的功能
-        function onNavLinkClick(event) { 
-            event.preventDefault();
-            const clickedNavLink = event.target;
+        // 當點擊導航連結時觸發的事件處理函數
+        function onNavLinkClick(event) {
+            event.preventDefault(); // 防止連結的默認行為
+            const clickedNavLink = event.target; // 獲取被點擊的導航連結
             document.querySelectorAll('.nav-link').forEach(function(navLink) {
-                navLink.classList.remove('active');
+                navLink.classList.remove('active'); // 移除所有導航連結的 'active' 樣式
             });
-            clickedNavLink.classList.add('active');
-            renderData();
+            clickedNavLink.classList.add('active'); // 為被點擊的導航連結添加 'active' 樣式
+            renderData(); // 渲染數據
         }
-        
+
+        // 為每一個導航連結添加點擊事件監聽器
         document.querySelectorAll('.nav-link').forEach(function(navLink) {
             navLink.addEventListener('click', onNavLinkClick);
         });
+
+        
     }
 
-    // 新增待辦事項
+
+    // 初始化添加待辦事項的功能
     function initializeAddTodo() {
-        // ... 這裡的代碼負責處理新增待辦事項的功能
-        addButton.addEventListener('click', function(e) {
+        // 為添加按鈕添加點擊事件監聽器
+        addButton.addEventListener('click', addTodo);
+
+        // 監聽輸入框的 Enter 鍵事件
+        newitem.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+        
+
+        function addTodo() {
             if (newitem.value === "") {
                 alert("請輸入內容");
                 return;
             }
-
-            const activeNavLink = document.querySelector('.nav-link.active');
-            const selectedCategory = activeNavLink ? activeNavLink.textContent.trim() : "全部";
+        
+            const dropdownItemName = document.querySelector('.dropdown-item.active'); 
+            const selectedCategory = dropdownItemName.textContent.trim();
             const categoryObj = data.find(item => item.category === selectedCategory);
+            const allcategory = data.find(item => item.category === "全部");
+            
+            if (categoryObj && categoryObj!= allcategory) {
+                categoryObj.todos.push({ content: newitem.value, completed: false });
+                allcategory.todos.push({ content: newitem.value, completed: false }); //都會存到全部裡面
+            } else {
+                allcategory.todos.push({ content: newitem.value, completed: false }); //都會存到全部裡面
+            }
 
-            categoryObj.todos.push({ content: newitem.value, completed: false });
+        
             newitem.value = '';
             renderData();
+            console.log(data);
+        }
+        
+
+        // 分類下拉 選單點擊事件
+        document.querySelector('.category-menu').addEventListener('click', function(e) {
+            const clickedItem = e.target;
+            if (clickedItem.matches('.dropdown-item')) {
+                e.preventDefault();
+                document.querySelector('.category-menu .dropdown-item.active').classList.remove('active');
+                clickedItem.classList.add('active');
+                const selectedCategory = clickedItem.textContent.trim();
+                // ... do something with selectedCategory, e.g., update the todos list
+
+
+                const popoverBtn = document.querySelector('.popover-btn');
+                const dropdownModal = document.querySelector('.dropdown-modal');
+                // 顯示一個彈出提示框
+                if(clickedItem != dropdownModal){
+                    var popover = new bootstrap.Popover(popoverBtn, {
+                        content: '分類到：「' + selectedCategory + '」'
+                    });
+                    popover.show();
+    
+                    // 6 秒後隱藏彈出提示框
+                    setTimeout(function() {
+                        popover.hide();
+                    }, 3000);
+                }
+            }
         });
+        
     }
 
-    // 刪除待辦事項
+
+
+    // 初始化刪除待辦事項的功能
     function initializeDeleteTodo() {
-        // ... 這裡的代碼負責處理刪除待辦事項的功能
+        // 為待辦事項列表添加點擊事件監聽器
         listGroup.addEventListener('click', function(e) {
-            const target = e.target;
+            const target = e.target; // 獲取事件目標
+            // 檢查事件目標是否是垃圾桶圖標或其子元素
             if (target.matches('.trash, .trash *')) {
-                e.preventDefault();
-                const listItem = target.closest('li');
-                const index = [...listGroup.children].indexOf(listItem);
-                const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-                const categoryObj = data.find(item => item.category === selectedCategory);
-                listItem.classList.add('animate__animated', 'animate__backOutRight');
-                isAnimating = true;
-                toggleButtons(true);
+                e.preventDefault(); // 取消事件的默認行為
+                const listItem = target.closest('li'); // 獲取包含事件目標的列表項
+                const index = [...listGroup.children].indexOf(listItem); // 獲取列表項的索引
+                const selectedCategory = document.querySelector('.nav-link.active').textContent.trim(); // 獲取當前選擇的分類
+                const categoryObj = data.find(item => item.category === selectedCategory); // 在數據中查找當前選擇的分類
+                listItem.classList.add('animate__animated', 'animate__backOutRight'); // 添加動畫效果
+                isAnimating = true; // 設置動畫正在進行的標記
+                toggleButtons(true); // 禁用按鈕
+                // 為列表項添加動畫結束事件監聽器
                 listItem.addEventListener('animationend', () => {
-                    isAnimating = false;
-                    toggleButtons(false);
-                    categoryObj.todos.splice(index, 1);
-                    renderData();
+                    isAnimating = false; // 清除動畫正在進行的標記
+                    toggleButtons(false); // 啟用按鈕
+                    categoryObj.todos.splice(index, 1); // 刪除待辦事項
+                    renderData(); // 重新渲染數據
                 });
             }
         });
     }
+
 
     // 排序已完成項目
     function initializeSortCompleted() {
@@ -205,6 +287,10 @@ document.addEventListener('DOMContentLoaded', function() {
         listGroup.innerHTML = '';
         // 獲取當前選定的類別
         const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
+        const navTabsCategory = document.querySelector('.nav.nav-tabs .Category').textContent;
+        document.querySelector('.nav-tabs .Category').textContent = navTabsCategory;
+
+
         let sortedData = [];
         // 檢查選定的類別是否為 '已完成' 或 '未完成'
         if (selectedCategory === '已完成' || selectedCategory === '未完成') {
