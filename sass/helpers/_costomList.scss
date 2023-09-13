@@ -1,51 +1,78 @@
-body{
+body {
     background: #AABFDA;
     color: #fff;
 }
 
-h1,span{
+h1, span {
     color: #fff;
 }
 
-a{
-    color: #AABFDA;
+a {
+    // color: #AABFDA;
+}
+
+::placeholder { /* 選擇所有的 placeholder */
+    color: $mybtn !important;
 }
 
 
-
-
-.card{
+.card {
     background-color: #cedef4;
-    .nav-tabs > a{
+
+    .nav-tabs > a {
         color: #7185A8;
 
+        &.active {
+            background-color: #879fc9;
+            color: #c7dbf6;
+        }
     }
 }
-.active{
-    background-color: #879fc9 !important;
-    color: #c7dbf6 !important;
-}
-.addModal{
+
+
+.addModal {
     color: #7185A8;
 }
 
-.pending-count{
+.modal-content{
+    background-color: #AABFDA;
+    .modal-header{
+        .modal-title{
+            color: #fff;
+        }
+    }
+    .modal-footer{
+        .modal-btn-close{
+            background-color: #bfd8f8;
+            border: 0;
+            color: #7185A8;
+        }
+        .store{
+            background-color: #7185A8;
+            border: 0;
+        }
+    }
+}
+
+.pending-count {
     color: #7185A8;
 }
 
-.list-group-item{
+.list-group-item {
     background-color: #879fc9;
-    .task-name{
+
+    .task-name {
         color: #fff;
     }
-    .trash{
+
+    .trash {
         color: #cedef4;
-        &:hover{
+
+        &:hover {
             color: red;
         }
     }
 }
-/* 上述的樣式會影響到 '待辦列表' 中的每個項目。 '.trash:hover' 是刪除圖示的樣式。 */
 
 .task-name {
     display: inline-block;
@@ -54,16 +81,17 @@ a{
     transition: color 0.3s;
 
     &.striked {
-        color: rgba(0, 0, 0, 0.5); 
+        color: rgba(0, 0, 0, 0.5);
     }
 
-    &.striked::before, &.unstriked::before {
+    &.striked::before,
+    &.unstriked::before {
         content: '';
         position: absolute;
         top: 50%;
         left: 0;
         height: 1px;
-        background: rgba(0, 0, 0, 0.5); 
+        background: rgba(0, 0, 0, 0.5);
     }
 
     &.striked::before {
@@ -74,70 +102,84 @@ a{
         animation: unstrike 0.3s forwards;
     }
 }
-/* 這是任務名稱的樣式，這些樣式會影響到 '待辦列表' 中的每個項目的文字樣式。*/
 
-// 吐司
-.Toast{
+.Toast {
     background-color: #879fc9;
 
-    .toast-body{
+    .toast-body {
         background-color: #879fc9;
         color: #fff;
     }
 }
 
+
+
 @keyframes strikeThrough {
-    0% { width: 0; }
-    100% { width: 100%; }
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
 }
 
 @keyframes unstrike {
-    0% { width: 100%; }
-    100% { width: 0; }
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0;
+    }
 }
 
-
-// 漢堡選單
 .navbar-toggler {
     position: absolute;
     top: 2.5rem;
     right: 1rem;
     border: 0;
-    border-radius: 50%; /* 使邊框看起來像正圓形 */
-    width: 40px; /* 必須指定一個固定的寬度 */
-    height: 40px; /* 必須指定一個固定的高度 */
-    // background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     background-color: #7185A8;
-    & > .fa-bars{
+    .fa-bars {
         color: #AABFDA;
     }
 }
 
-
-
-.nav{
+.nav {
     border-bottom: 1px solid $gray-300;
 
-    &-link{
+    &-link {
         color: $secondary;
         padding-top: 10px;
         padding-bottom: 10px;
     }
 }
-.bi-window-plus{
+
+.offcanvas{
+    background-color: $offcanvas;
+    color: #fff;
+}
+.bar-nav-link{
+    color: #fff;
+    &.active{
+        color: $mybtn !important;
+    }
+}
+
+.bi-window-plus {
     font-size: 1.5rem;
 }
-/* 這些樣式會影響到分類標籤 '全部', '已完成', '未完成' 和 '+' 圖示的樣式。 */
 
-
-.clear{
+.clear {
     color: $gray-500;
     text-decoration: none;
 }
 
 .form-check.form-switch {
     display: flex;
-    color: #7185A8;
 
     .form-check-input {
         background-color: #7185A8;
@@ -145,21 +187,24 @@ a{
     }
 }
 
-/* 這是 '排序已完成項目' 切換按鈕的樣式。 */
-
-
 input:focus {
     outline: none;
-    border-color: transparent;
+
     box-shadow: none;
 }
-/* 這是 '新增分類' 和 '新增待辦事項' 輸入框的焦點樣式。 */
 
-
-.list-group-item {
-    position: relative;
-    transition: top 0.5s;
+.newitem{
+    border: 1.5px solid $mybtn;
+    &::-webkit-input-placeholder { /* WebKit 瀏覽器 */
+        color: $mybtn;
+    }
 }
-/* 這是 '待辦列表' 中的每個項目的樣式。 */
 
+.dropdown-btn,.addButton{
+    border: 1.5px solid $mybtn;
 
+    &:hover{
+        background-color: $mybtn;
+
+    }
+}

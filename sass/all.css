@@ -14382,8 +14382,12 @@ h1, .h1, span {
   color: #fff;
 }
 
-a {
-  color: #AABFDA;
+::-moz-placeholder { /* 選擇所有的 placeholder */
+  color: #7185A8 !important;
+}
+
+::placeholder { /* 選擇所有的 placeholder */
+  color: #7185A8 !important;
 }
 
 .card {
@@ -14392,14 +14396,29 @@ a {
 .card .nav-tabs > a {
   color: #7185A8;
 }
-
-.active {
-  background-color: #879fc9 !important;
-  color: #c7dbf6 !important;
+.card .nav-tabs > a.active {
+  background-color: #879fc9;
+  color: #c7dbf6;
 }
 
 .addModal {
   color: #7185A8;
+}
+
+.modal-content {
+  background-color: #AABFDA;
+}
+.modal-content .modal-header .modal-title {
+  color: #fff;
+}
+.modal-content .modal-footer .modal-btn-close {
+  background-color: #bfd8f8;
+  border: 0;
+  color: #7185A8;
+}
+.modal-content .modal-footer .store {
+  background-color: #7185A8;
+  border: 0;
 }
 
 .pending-count {
@@ -14419,7 +14438,6 @@ a {
   color: red;
 }
 
-/* 上述的樣式會影響到 '待辦列表' 中的每個項目。 '.trash:hover' 是刪除圖示的樣式。 */
 .task-name {
   display: inline-block;
   position: relative;
@@ -14444,7 +14462,6 @@ a {
   animation: unstrike 0.3s forwards;
 }
 
-/* 這是任務名稱的樣式，這些樣式會影響到 '待辦列表' 中的每個項目的文字樣式。*/
 .Toast {
   background-color: #879fc9;
 }
@@ -14474,12 +14491,12 @@ a {
   top: 2.5rem;
   right: 1rem;
   border: 0;
-  border-radius: 50%; /* 使邊框看起來像正圓形 */
-  width: 40px; /* 必須指定一個固定的寬度 */
-  height: 40px; /* 必須指定一個固定的高度 */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   background-color: #7185A8;
 }
-.navbar-toggler > .fa-bars {
+.navbar-toggler .fa-bars {
   color: #AABFDA;
 }
 
@@ -14492,11 +14509,22 @@ a {
   padding-bottom: 10px;
 }
 
+.offcanvas {
+  background-color: #AABFDA;
+  color: #fff;
+}
+
+.bar-nav-link {
+  color: #fff;
+}
+.bar-nav-link.active {
+  color: #7185A8 !important;
+}
+
 .bi-window-plus {
   font-size: 1.5rem;
 }
 
-/* 這些樣式會影響到分類標籤 '全部', '已完成', '未完成' 和 '+' 圖示的樣式。 */
 .clear {
   color: #adb5bd;
   text-decoration: none;
@@ -14504,24 +14532,27 @@ a {
 
 .form-check.form-switch {
   display: flex;
-  color: #7185A8;
 }
 .form-check.form-switch .form-check-input {
   background-color: #7185A8;
   order: 2;
 }
 
-/* 這是 '排序已完成項目' 切換按鈕的樣式。 */
 input:focus {
   outline: none;
-  border-color: transparent;
   box-shadow: none;
 }
 
-/* 這是 '新增分類' 和 '新增待辦事項' 輸入框的焦點樣式。 */
-.list-group-item {
-  position: relative;
-  transition: top 0.5s;
+.newitem {
+  border: 1.5px solid #7185A8;
+}
+.newitem::-webkit-input-placeholder { /* WebKit 瀏覽器 */
+  color: #7185A8;
 }
 
-/* 這是 '待辦列表' 中的每個項目的樣式。 *//*# sourceMappingURL=all.css.map */
+.dropdown-btn, .addButton {
+  border: 1.5px solid #7185A8;
+}
+.dropdown-btn:hover, .addButton:hover {
+  background-color: #7185A8;
+}/*# sourceMappingURL=all.css.map */

@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (category !== "") {
                     const newLi = document.createElement("li");
                     newLi.className = "nav-item";
-                    newLi.innerHTML = `<a class="nav-link fw-bold" href="#">•${category}</a>`; //新增至漢堡選單
+                    newLi.innerHTML = `<a class="bar-nav-link nav-link fw-bold" href="#">•${category}</a>`; //新增至漢堡選單
                     document.querySelector('.navbar-nav').appendChild(newLi);
 
                     // 更新下拉選單
