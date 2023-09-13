@@ -14395,6 +14395,7 @@ h1, .h1, span {
 }
 .card .nav-tabs > a {
   color: #7185A8;
+  border-bottom: 0;
 }
 .card .nav-tabs > a.active {
   background-color: #879fc9;
@@ -14555,4 +14556,12 @@ input:focus {
 }
 .dropdown-btn:hover, .addButton:hover {
   background-color: #7185A8;
+}
+
+.category-menu {
+  background-color: #AABFDA;
+  color: #fff;
+}
+.category-menu > li > a {
+  color: #fff;
 }/*# sourceMappingURL=all.css.map */

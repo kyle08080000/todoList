@@ -13,10 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { 
             category: "全部",
             todos: [
-                { content: "房租", completed: false, originalIndex: 0 },
-                { content: "保險", completed: false, originalIndex: 1 },
-                { content: "電費", completed: false, originalIndex: 2 },
-                { content: "先來杯咖啡吧", completed: false, originalIndex: 3 }
+                { content: "來杯咖啡", completed: false, originalIndex: 0 },
+                { content: "記得回 Steven 訊息", completed: false, originalIndex: 1 },
+                { content: "email 退款回信", completed: false, originalIndex: 2 }
             ]
         }
     ];

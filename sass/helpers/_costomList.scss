@@ -21,6 +21,7 @@ a {
 
     .nav-tabs > a {
         color: #7185A8;
+        border-bottom: 0;
 
         &.active {
             background-color: #879fc9;
@@ -206,5 +207,13 @@ input:focus {
     &:hover{
         background-color: $mybtn;
 
+    }
+}
+
+.category-menu{
+    background-color: $offcanvas;
+    color: #fff;
+    & > li > a{
+        color: #fff;
     }
 }

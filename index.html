@@ -46,9 +46,8 @@
             </div>
         </nav>
 
-
+        <!-- 標題 -->
         <div class="row">
-
             <div class="col-md-6 col-lg-5 mx-auto">
                 <div class="title mt-4 mb-3 text-center">
                     <h1 class="fw-bold">
@@ -56,13 +55,12 @@
                     </h1>
                     <span class="fs-6">Get things done, one item at a time.</span>
                 </div>
-                
-                <div class="card shadow">
 
-                <!-- 卡片導航欄 -->
+                <div class="card shadow">
+                    <!-- 卡片導航欄 -->
                     <nav class="nav nav-tabs flex-nowrap text-center fw-bold">
                         <a class="Category nav-link px-2 flex-fill text-nowrap active" aria-current="page" href="#" data-category="all">
-
+                            全部
                         </a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="work">已完成</a>
                         <a class="nav-link px-2 flex-fill text-nowrap" href="#" data-category="shopping">未完成</a>
@@ -89,19 +87,15 @@
                             </div>
                         </div>
                     </nav>
-                    
-                    
                     <!-- 待辦列表 -->
                     <div class="overflow-auto">
                         <ul class="list-group" style="height: 290px; overflow-y:scroll;">
     
                         </ul>
                     </div>
-
-    <!-- 吐司訊息 ＆ 排序項目 -->
+                    <!-- 吐司訊息 -->
                     <div class="row">
                         <div class="col position-relative">
-                            <!-- 吐司訊息 -->
                             <div class="Toast position-absolute top-0 start-50 translate-middle-x" style="z-index: 11">
                                 <div id="liveToast" class="toast text-white" role="alert" aria-live="assertive" aria-atomic="true">
                                     <div class="d-flex w-100">
@@ -114,59 +108,50 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- 排序項目 -->
                     <div class="row">
                         <div class="col-12 Sort-items">
-                            <!-- 排序項目 -->
                             <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
                                 <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
                                 <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                             </div>
                         </div>
                     </div>
-
-                    
-                    
-    
-                        <!-- 新增待辦事項 -->
-                        <div class="row">
-                            <div class="col-10 mx-auto">
-                                <div class="input-group text-center my-3">
-                                        <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <!-- 新增待辦事項 -->
+                    <div class="row">
+                        <div class="col-10 mx-auto">
+                            <div class="input-group text-center my-3">
+                                    <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
 
 
-                                            <button class="btn dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-sliders2"></i>
-                                            </button>
-                                            <ul class="category-menu dropdown-menu dropdown-menu-end">
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#">全部</a></li>
-                                                
-                                            </ul>
-
-
-                                        <button class="btn  addButton" type="submit" id="button-addon2">
-                                            <i class="bi bi-arrow-right"></i>
+                                        <button class="btn dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-sliders2"></i>
                                         </button>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <!-- 更新任務數量 -->
-                        <div class="row my-3">
-                            <div class="col-6 text-nowrap pending">
-                                <span class="pending-count ms-4" id="pending-count">待完成項目5個</span>
-                            </div>
-                            <div class="col-6 text-end text-nowrap">
-                                <a href="#" class="clear me-4">清除已完成項目</a>
-                            </div>
-                        </div>
-                        
-                </div>
-    
-            </div>
+                                        <ul class="category-menu dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="#">全部</a></li>
+                                            
+                                        </ul>
 
+
+                                    <button class="btn  addButton" type="submit" id="button-addon2">
+                                        <i class="bi bi-arrow-right"></i>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 更新任務數量 -->
+                    <div class="row my-3">
+                        <div class="col-6 text-nowrap pending">
+                            <span class="pending-count ms-4" id="pending-count">待完成項目5個</span>
+                        </div>
+                        <div class="col-6 text-end text-nowrap">
+                            <a href="#" class="clear me-4">清除已完成項目</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
