@@ -14411,6 +14411,9 @@ h1, .h1, span {
 .modal-content .modal-header .modal-title {
   color: #fff;
 }
+.modal-content .modal-header .modal-title .title-color {
+  color: #F6B1CE;
+}
 .modal-content .modal-footer .modal-btn-close {
   background-color: #bfd8f8;
   border: 0;
