@@ -5987,7 +5987,7 @@ textarea.form-control-lg {
 .popover {
   --bs-popover-zindex: 1070;
   --bs-popover-max-width: 276px;
-  --bs-popover-font-size: 0.875rem;
+  --bs-popover-font-size: 1rem;
   --bs-popover-bg: #F6B1CE;
   --bs-popover-border-width: var(--bs-border-width);
   --bs-popover-border-color: #F6B1CE;
@@ -14414,7 +14414,7 @@ h1, .h1, span {
 .modal-content .modal-footer .modal-btn-close {
   background-color: #bfd8f8;
   border: 0;
-  color: #7185A8;
+  color: #fff;
 }
 .modal-content .modal-footer .store {
   background-color: #7185A8;
@@ -14539,7 +14539,7 @@ h1, .h1, span {
 
 .form-check.form-switch {
   display: flex;
-  color: #fff;
+  color: #7185A8;
 }
 .form-check.form-switch .form-check-input:checked {
   background-color: #F6B1CE;
@@ -14552,27 +14552,27 @@ input:focus {
 }
 
 .newitem {
-  border: 1.5px solid #7185A8;
+  border: 1.5px solid #F6B1CE;
 }
 .newitem::-webkit-input-placeholder { /* WebKit 瀏覽器 */
   color: #7185A8;
 }
 
-.dropdown-btn {
+.addButton {
   border: 1.5px solid #7185A8;
   background-color: #7185A8;
   color: #fff;
 }
-.dropdown-btn:hover {
+.addButton:hover {
   background-color: #AABFDA;
 }
 
-.addButton {
+.dropdown-btn {
   border: 1.5px solid #F6B1CE;
   background-color: #F6B1CE;
   color: #fff;
 }
-.addButton:hover {
+.dropdown-btn:hover {
   background-color: #F6B1CE;
 }
 

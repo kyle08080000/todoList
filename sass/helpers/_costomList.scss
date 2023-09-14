@@ -56,7 +56,7 @@ a {
         .modal-btn-close{
             background-color: #bfd8f8;
             border: 0;
-            color: #7185A8;
+            color: #fff;
         }
         .store{
             background-color: #7185A8;
@@ -203,7 +203,7 @@ a {
 // 排序按紐
 .form-check.form-switch {
     display: flex;
-    color: #fff;
+    color: #7185A8;
     .form-check-input:checked {
         background-color: $myswitchBtn;
         order: 2;
@@ -217,13 +217,13 @@ input:focus {
 }
 
 .newitem{
-    border: 1.5px solid $mybtn;
+    border: 1.5px solid $myInput;
     &::-webkit-input-placeholder { /* WebKit 瀏覽器 */
         color: $mybtn;
     }
 }
 
-.dropdown-btn {
+.addButton {
     border: 1.5px solid $mybtn;
     background-color: $mybtn;
     color: #fff;
@@ -231,7 +231,7 @@ input:focus {
         background-color: #AABFDA;
     }
 }
-.addButton{
+.dropdown-btn{
     border: 1.5px solid $mystoreBtn;
     background-color: $mystoreBtn;
     color: #fff;
