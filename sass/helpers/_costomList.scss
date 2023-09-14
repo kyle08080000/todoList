@@ -24,9 +24,19 @@ a {
         border-bottom: 0;
 
         &.active {
-            background-color: #879fc9;
-            color: #c7dbf6;
+            background-color: $mynav-tabs;
+            color: #fff;
         }
+    }
+
+    .Badges-Category{
+        // left: 60px;
+    }
+    .Badges-completed{
+        // left: 160px;
+    }
+    .Badges-undone{
+        // right: 70px;
     }
 }
 
@@ -36,7 +46,7 @@ a {
 }
 
 .modal-content{
-    background-color: #AABFDA;
+    background-color: $mymodal;
     .modal-header{
         .modal-title{
             color: #fff;
@@ -114,10 +124,12 @@ a {
 }
 
 .Toast {
-    background-color: #879fc9;
-
+    background-color: #F6B1CE;
+    .toast-div{
+        background-color: #F6B1CE;
+    }
     .toast-body {
-        background-color: #879fc9;
+        background-color: #F6B1CE;
         color: #fff;
     }
 }
@@ -152,9 +164,9 @@ a {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: #7185A8;
+    background-color: $mybar;
     .fa-bars {
-        color: #AABFDA;
+        color: #7185A8;
     }
 }
 
@@ -169,7 +181,7 @@ a {
 }
 
 .offcanvas{
-    background-color: $offcanvas;
+    background-color: $myoffcanvas;
     color: #fff;
 }
 .bar-nav-link{
@@ -188,11 +200,12 @@ a {
     text-decoration: none;
 }
 
+// 排序按紐
 .form-check.form-switch {
     display: flex;
-
-    .form-check-input {
-        background-color: #7185A8;
+    color: #fff;
+    .form-check-input:checked {
+        background-color: $myswitchBtn;
         order: 2;
     }
 }
@@ -210,22 +223,31 @@ input:focus {
     }
 }
 
-.dropdown-btn,.addButton{
+.dropdown-btn {
     border: 1.5px solid $mybtn;
-
+    background-color: $mybtn;
+    color: #fff;
     &:hover{
-        background-color: $mybtn;
-
+        background-color: #AABFDA;
+    }
+}
+.addButton{
+    border: 1.5px solid $mystoreBtn;
+    background-color: $mystoreBtn;
+    color: #fff;
+    &:hover{
+        background-color: $mystoreBtn;
     }
 }
 
+// 提示匡
 .popover-btn{
     right: 55px;
-
+    border-color: $mytoast;
 }
 
 .category-menu{
-    background-color: $offcanvas;
+    background-color: $myoffcanvas;
     color: #fff;
     & > li > a{
         color: #fff;

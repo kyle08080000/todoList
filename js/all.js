@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let data = [
         { 
+            category: "全聯",
+            todos: [
+                { content: "來杯咖啡", completed: false},
+                { content: "記得回 Steven 訊息", completed: false},
+                { content: "email 退款回信", completed: false}
+            ]
+        },
+        { 
             category: "全部",
             todos: [
                 { content: "來杯咖啡", completed: false},
@@ -105,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navLink.addEventListener('click', function(event) {
                 const clickedCategory = event.target.textContent.trim();
                 const allCategoryTab = document.querySelector('.nav.nav-tabs .Category');
-                allCategoryTab.textContent = clickedCategory;
+                allCategoryTab.textContent = clickedCategory; //更換卡片Category分類名稱
                 renderData(clickedCategory);
 
             });
@@ -253,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const completedItems = Array.from(listGroup.children).filter(listItem =>
                 listItem.querySelector('input').checked
             );
-            clearButton.style.color = completedItems.length === 0 ? "gray" : "red";
+            clearButton.style.color = completedItems.length === 0 ? "gray" : "#F6B1CE";
         });
         // 清除所有已完成的任務
         clearButton.addEventListener('click', function(e) {
@@ -280,7 +288,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 渲染数据到 HTML
     function renderData() {
-        // ... 這裡的代碼負責處理渲染數據到HTML的功能
         // 檢查是否有動畫正在運行
         if (isAnimating) return;
         // 清除當前列表
@@ -289,13 +296,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const cardNav = document.querySelector('.nav.nav-tabs'); //卡片導航欄
         const selectedCategory = document.querySelector('.nav-link.active').textContent.trim(); //已完成 & 未完成
         const navTabsCategory = document.querySelector('.Category').textContent; //卡片當前分類名稱
-        document.querySelector('.Category').textContent = navTabsCategory;
+        // document.querySelector('.Category').textContent = navTabsCategory;
 
         let sortedData = [];
 
         // 找到選定類別的數據
         const categoryObj = data.find(item => item.category === navTabsCategory);
         sortedData = sortedData.concat([...categoryObj.todos]);
+        
 
         // 檢查選定的類別是否為 '已完成' 或 '未完成' 
         if (selectedCategory === '已完成') {
