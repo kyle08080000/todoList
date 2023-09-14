@@ -14426,16 +14426,20 @@ h1, .h1, span {
   color: #7185A8;
 }
 
-.list-group-item {
+.card-body {
+  padding: 0;
+}
+
+.item-list .list-group-item {
   background-color: #879fc9;
 }
-.list-group-item .task-name {
+.item-list .list-group-item .task-name {
   color: #fff;
 }
-.list-group-item .trash {
+.item-list .list-group-item .trash {
   color: #cedef4;
 }
-.list-group-item .trash:hover {
+.item-list .list-group-item .trash:hover {
   color: red;
 }
 
@@ -14446,7 +14450,7 @@ h1, .h1, span {
   transition: color 0.3s;
 }
 .task-name.striked {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5) !important;
 }
 .task-name.striked::before, .task-name.unstriked::before {
   content: "";

@@ -89,67 +89,70 @@
                             </div>
                         </div>
                     </nav>
-                    <!-- 待辦列表 -->
-                    <div class="overflow-auto">
-                        <ul class="list-group" style="height: 290px;">
-    
-                        </ul>
-                    </div>
-                    <!-- 吐司訊息 -->
-                    <div class="row">
-                        <div class="col position-relative">
-                            <div class="Toast position-absolute top-0 start-50 translate-middle-x" style="z-index: 11">
-                                <div id="liveToast" class="toast text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="d-flex w-100">
-                                        <div class="toast-body fw-bold text-break">
-                                            吐司顯示的訊息
+
+                    <div class="card-body">
+                        <!-- 待辦列表 -->
+                        <div class="overflow-auto item-list">
+                            <ul class="list-group" style="height: 290px;">
+        
+                            </ul>
+                        </div>
+                        <!-- 吐司訊息 -->
+                        <div class="row">
+                            <div class="col position-relative">
+                                <div class="Toast position-absolute top-0 start-50 translate-middle-x" style="z-index: 11">
+                                    <div id="liveToast" class="toast text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex w-100">
+                                            <div class="toast-body fw-bold text-break">
+                                                吐司顯示的訊息
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                                         </div>
-                                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 排序項目 -->
-                    <div class="row">
-                        <div class="col-12 Sort-items">
-                            <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
-                                <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
-                                <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                        <!-- 排序項目 -->
+                        <div class="row">
+                            <div class="col-12 Sort-items">
+                                <div class="form-check form-switch mt-1 mb-4 me-4 justify-content-end align-items-center flex-nowrap">
+                                    <label class="text-nowrap form-check-label me-6 fs-6 d-block mt--1" for="flexSwitchCheckDefault">排序已完成項目</label>
+                                    <input class="form-check-input fs-5 mt--1" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 新增待辦事項 -->
-                    <div class="row">
-                        <div class="col-10 mx-auto">
-                            <div class="input-group text-center my-3 position-relative">
-                                    <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
-
-                                    <button class="btn dropdown-btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-sliders2"></i>
+                        <!-- 新增待辦事項 -->
+                        <div class="row">
+                            <div class="col-10 mx-auto">
+                                <div class="input-group text-center my-3 position-relative">
+                                        <input type="text" class="form-control newitem" placeholder="請輸入待辦事項" aria-label="Recipient's username" aria-describedby="button-addon2">
+    
+                                        <button class="btn dropdown-btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-sliders2"></i>
+                                        </button>
+                                        <button class="popover-btn position-absolute invisible"></button>
+    
+    
+                                        <ul class="row category-menu dropdown-menu dropdown-menu-end" style="width: 100px;">
+                                            <li><a class="dropdown-modal dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item active" href="#">全部</a></li>
+                                        </ul>
+    
+                                    <button class="btn  addButton" type="submit" id="button-addon2">
+                                        <i class="bi bi-arrow-right"></i>
                                     </button>
-                                    <button class="popover-btn position-absolute invisible"></button>
-
-
-                                    <ul class="row category-menu dropdown-menu dropdown-menu-end" style="width: 100px;">
-                                        <li><a class="dropdown-modal dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">新增分類？</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item active" href="#">全部</a></li>
-                                    </ul>
-
-                                <button class="btn  addButton" type="submit" id="button-addon2">
-                                    <i class="bi bi-arrow-right"></i>
-                                </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- 更新任務數量 -->
-                    <div class="row my-3">
-                        <div class="col-6 text-nowrap pending">
-                            <span class="pending-count ms-4" id="pending-count">待完成項目5個</span>
-                        </div>
-                        <div class="col-6 text-end text-nowrap">
-                            <a href="#" class="clear me-4">清除已完成項目</a>
+                        <!-- 更新任務數量 -->
+                        <div class="row my-3">
+                            <div class="col-6 text-nowrap pending">
+                                <span class="pending-count ms-4" id="pending-count">待完成項目5個</span>
+                            </div>
+                            <div class="col-6 text-end text-nowrap">
+                                <a href="#" class="clear me-4">清除已完成項目</a>
+                            </div>
                         </div>
                     </div>
                 </div>

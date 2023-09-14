@@ -59,22 +59,31 @@ a {
     color: #7185A8;
 }
 
-.list-group-item {
-    background-color: #879fc9;
+.card-body{
+    padding: 0;
+}
+.item-list{
+    // border-left: 1px solid #fff;
+    // border-right: 1px solid #fff;
+    // border-bottom: 1px solid #fff;
 
-    .task-name {
-        color: #fff;
-    }
-
-    .trash {
-        color: #cedef4;
-
-        &:hover {
-            color: red;
+    .list-group-item {
+        background-color: #879fc9;
+        .task-name {
+            color: #fff;
+        }
+    
+        .trash {
+            color: #cedef4;
+    
+            &:hover {
+                color: red;
+            }
         }
     }
 }
 
+// 刪除線
 .task-name {
     display: inline-block;
     position: relative;
@@ -82,7 +91,7 @@ a {
     transition: color 0.3s;
 
     &.striked {
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(0, 0, 0, 0.5) !important;
     }
 
     &.striked::before,

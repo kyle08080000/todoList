@@ -83,12 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 categoryInput.value = '';
 
                 // 為新創建的 navLink 添加事件監聽器
-                const newLiNavLink = newLi.querySelector('.bar-nav-link.nav-link');
+                const newLiNavLink = newLi.querySelector('.bar-nav-link.nav-link'); //漢堡選單
                 newLiNavLink.addEventListener('click', function(event) {
                     const clickedCategory = event.target.textContent.trim();
-                    const allCategoryTab = document.querySelector('.nav.nav-tabs .Category');
-                    allCategoryTab.textContent = clickedCategory;
-                    renderData(clickedCategory);
+                    const allCategoryTab = document.querySelector('.Category');
+                    allCategoryTab.textContent = clickedCategory; //依照漢版選單點擊的分類 顯示在卡片導航
+                    renderData();
                 });
             }
         });
@@ -286,25 +286,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // 清除當前列表
         listGroup.innerHTML = '';
         // 獲取當前選定的類別
-        const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        const navTabsCategory = document.querySelector('.nav.nav-tabs .Category').textContent;
-        document.querySelector('.nav-tabs .Category').textContent = navTabsCategory;
-
+        const cardNav = document.querySelector('.nav.nav-tabs'); //卡片導航欄
+        const selectedCategory = document.querySelector('.nav-link.active').textContent.trim(); //已完成 & 未完成
+        const navTabsCategory = document.querySelector('.Category').textContent; //卡片當前分類名稱
+        document.querySelector('.Category').textContent = navTabsCategory;
 
         let sortedData = [];
-        // 檢查選定的類別是否為 '已完成' 或 '未完成'
-        if (selectedCategory === '已完成' || selectedCategory === '未完成') {
-            // 確定項目是否已完成
-            const completed = selectedCategory === '已完成';
-            // 根據選定的類別過濾數據
-            data.forEach(categoryObj => {
-                sortedData = sortedData.concat(categoryObj.todos.filter(item => item.completed === completed));
-            });
+
+        // 找到選定類別的數據
+        const categoryObj = data.find(item => item.category === navTabsCategory);
+        sortedData = sortedData.concat([...categoryObj.todos]);
+
+        // 檢查選定的類別是否為 '已完成' 或 '未完成' 
+        if (selectedCategory === '已完成') {
+            sortedData = categoryObj.todos.filter(item => item.completed);
+        } else if (selectedCategory === '未完成') {
+            sortedData = categoryObj.todos.filter(item => !item.completed);
         } else {
-            // 找到選定類別的數據
-            const categoryObj = data.find(item => item.category === selectedCategory);
-            sortedData = sortedData.concat([...categoryObj.todos]);
+            sortedData = [...categoryObj.todos];
         }
+
         // 根據選定的排序方式對數據進行排序
         sortedData.sort((a, b) => {
             if (sortCheckbox.checked) {
@@ -312,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return sortedData.indexOf(a) - sortedData.indexOf(b);
         });
+
+
         // 渲染排序後的數據到 HTML
         sortedData.forEach((item, index) => {
             const listItem = document.createElement('li');
@@ -346,22 +349,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 更新待完成任务数量
     function updatePendingCount() {
-        // ... 這裡的代碼負責處理更新待完成任務數量的功能
+        const navTabsCategory = document.querySelector('.Category').textContent;
         const selectedCategory = document.querySelector('.nav-link.active').textContent.trim();
-        let todos = [];
+        const categoryObj = data.find(item => item.category === navTabsCategory);
+        let todos = categoryObj.todos;
+
         if (selectedCategory === '已完成' || selectedCategory === '未完成') {
             const completed = selectedCategory === '已完成';
-            data.forEach(categoryObj => {
-                todos = todos.concat(categoryObj.todos.filter(item => item.completed === completed));
-            });
-        } else {
-            data.forEach(categoryObj => {
-                todos = todos.concat(categoryObj.todos);
-            });
+            todos = todos.filter(item => item.completed === completed);
         }
+
         const pendingCount = todos.filter(item => !item.completed).length;
-        pendingCountElement.textContent = '待完成項目' + pendingCount + '個';
+        pendingCountElement.textContent = selectedCategory === '已完成' ? '已完成 ' + (todos.length - pendingCount) + ' 個' : '待完成 ' + pendingCount + ' 個';
     }
+
+
 
     // 檢查畫面是否有動畫正在執行
     function toggleButtons(disabled) {
