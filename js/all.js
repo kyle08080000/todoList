@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(data);
 
                 // 設定 toastBody 的文字內容，並顯示 toast
-                toastBody.textContent = `「${category}」 已新增至右上角選單！記得去查看喔！`;
+                toastBody.textContent = `「${category}」 已新增至右上角選單！`;
                 toast.show();
 
                 // 隱藏 myModal
